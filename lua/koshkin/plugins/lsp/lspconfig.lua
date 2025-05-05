@@ -71,19 +71,38 @@ return {
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
+    -- Configure the diagnostic signs in the sign column (gutter)
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+          [vim.diagnostic.severity.INFO] = " ",
+        },
+        texthl = {
+          [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+          [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+          [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+          [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        },
+        numhl = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.INFO] = "",
+        },
+        priority = 20,
+      },
+      virtual_text = true,
+      underline = true,
+      severity_sort = true,
+    })
 
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
+        "ts_ls", -- Corrected from "tsserver"
         "html",
         "cssls",
         "tailwindcss",
@@ -93,7 +112,7 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
-        "ruff",
+        "ruff", -- Make sure this is "ruff_lsp", not just "ruff"
       },
       automatic_installation = true,
     })
@@ -120,6 +139,12 @@ return {
               },
             },
           },
+        })
+      end,
+      ["tsserver"] = function()
+        -- Configure tsserver
+        lspconfig["tsserver"].setup({
+          capabilities = capabilities,
         })
       end,
       ["svelte"] = function()

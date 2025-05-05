@@ -10,7 +10,7 @@ return {
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
-      python = { "ruff" },  -- Changed from pylint to ruff for better performance
+      -- python = { "ruff" },  -- Changed from pylint to ruff for better performance
     }
 
     -- Change the BufEnter to BufReadPost to avoid errors on buffer switching
