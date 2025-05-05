@@ -37,7 +37,9 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
+        "ruff",
       },
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
@@ -48,7 +50,9 @@ return {
         "black", -- python formatter
         "pylint", -- python linter
         "eslint_d", -- js linter
+        "ruff", -- python formatter
       },
+      automatic_installation = true,
     })
   end,
 }
