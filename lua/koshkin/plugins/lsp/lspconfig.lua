@@ -2,8 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-        "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
@@ -85,22 +83,6 @@ return {
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
-        })
-      end,
-      ["pyright"] = function()
-        lspconfig["pyright"].setup({
-          capabilities = capabilities,
-          settings = {
-            python = {
-              venvPath = ".",
-              venv = ".venv",
-              analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace",
-              },
-            },
-          },
         })
       end,
       ["svelte"] = function()

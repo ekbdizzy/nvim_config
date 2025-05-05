@@ -4,11 +4,6 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
-  -- Useful status updates for LSP.
-  { "j-hui/fidget.nvim", opts = {} },
-
-  -- Allows extra capabilities provided by nvim-cmp
-  "hrsh7th/cmp-nvim-lsp",
   config = function()
     -- import mason
     local mason = require("mason")
@@ -32,7 +27,7 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "ts_ls",
+        "tsserver",
         "html",
         "cssls",
         "tailwindcss",
@@ -43,7 +38,6 @@ return {
         "prismals",
         "pyright",
       },
-      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
@@ -51,7 +45,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
-        "ruff", -- python formatter
+        "black", -- python formatter
         "pylint", -- python linter
         "eslint_d", -- js linter
       },
