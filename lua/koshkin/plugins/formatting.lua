@@ -19,7 +19,8 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "ruff" },
+        python = { "ruff_format", "isort" },
+        sql = { "pg_format" },
       },
       -- format_on_save = {
       --   lsp_fallback = false,
@@ -27,7 +28,6 @@ return {
       --   timeout_ms = 1000,
       -- },
     })
-
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,

@@ -27,10 +27,9 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
-        "black", -- python formatter
-        "pylint", -- python linter
-        "eslint_d", -- js linter
         "ruff", -- python formatter
+        "eslint_d", -- js linter
+        "pgformatter", -- sql formatter
       },
       automatic_installation = true,
     })
