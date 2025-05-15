@@ -22,6 +22,11 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+-- Switch between tabs with alt+num
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>t" .. i .. "", i .. "gt", { noremap = true, silent = true })
+end
+
 -- Resize windows with Alt + Arrow keys
 vim.keymap.set("n", "<M-Left>", "<cmd>vertical resize -4<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-Right>", "<cmd>vertical resize +4<CR>", { noremap = true, silent = true })
