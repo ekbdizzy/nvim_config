@@ -126,7 +126,15 @@ return {
           end,
           ["gopls"] = function()
             -- Configure gopls server
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              pattern = "*.go",
+              callback = function()
+                vim.lsp.buf.format({ async = false })
+              end,
+            })
+
             lspconfig["gopls"].setup({
+              -- Automatically format on save
               capabilities = capabilities,
               settings = {
                 gopls = {
@@ -156,13 +164,23 @@ return {
                     unusedparams = true,
                     unusedwrite = true,
                     useany = true,
+                    shadow = true,
+                    unusedvariable = true,
                   },
                   usePlaceholders = true,
                   completeUnimported = true,
                   staticcheck = true,
                   directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules", "-.nvim" },
                   semanticTokens = true,
+                  buildFlags = { "-tags=integration,e2e" },
+                  env = { GOFLAGS = "-tags=integration,e2e" },
+                  formatting = {
+                    gofumpt = true,
+                  },
                 },
+              },
+              flags = {
+                debounce_text_changes = 150,
               },
             })
           end,
