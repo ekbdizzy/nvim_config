@@ -22,7 +22,7 @@ return {
           insert = "<C-c>"
         },
         reset = {
-          normal = "<C-l>",
+          normal = "<M-l>",
         },
         submit_prompt = {
           normal = "<CR>",
