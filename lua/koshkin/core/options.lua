@@ -36,3 +36,8 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register:
 --split windows
 opt.splitright = true
 opt.splitbelow = true
+
+opt.undofile = true -- persistent undo across sessions
+opt.scrolloff = 8 -- keep 8 lines visible above/below cursor
+opt.updatetime = 250 -- faster CursorHold events
+opt.swapfile = false -- no swap file prompts

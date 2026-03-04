@@ -20,6 +20,7 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         python = { "ruff_format", "isort" },
+        go = { "gofumpt" },
         sql = { "pg_format" },
       },
       -- format_on_save = {
