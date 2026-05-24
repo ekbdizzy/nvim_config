@@ -114,6 +114,7 @@ return {
         "pyright",
         "ruff",
         "gopls",
+        "rust_analyzer",
       },
       automatic_installation = true,
       handlers = {
@@ -164,9 +165,6 @@ return {
                 semanticTokens = true,
                 buildFlags = { "-tags=integration,e2e" },
                 env = { GOFLAGS = "-tags=integration,e2e" },
-                formatting = {
-                  gofumpt = true,
-                },
               },
             },
             flags = {
@@ -218,6 +216,33 @@ return {
           lspconfig["emmet_ls"].setup({
             capabilities = capabilities,
             filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+          })
+        end,
+        ["rust_analyzer"] = function()
+          lspconfig["rust_analyzer"].setup({
+            capabilities = capabilities,
+            settings = {
+              ["rust-analyzer"] = {
+                cargo = {
+                  allFeatures = true,
+                  loadOutDirsFromCheck = true,
+                  buildScripts = { enable = true },
+                },
+                checkOnSave = true,
+                check = {
+                  command = "clippy",
+                  extraArgs = { "--no-deps" },
+                },
+                procMacro = { enable = true },
+                inlayHints = {
+                  bindingModeHints = { enable = true },
+                  chainingHints = { enable = true },
+                  closingBraceHints = { enable = true, minLines = 25 },
+                  parameterHints = { enable = true },
+                  typeHints = { enable = true },
+                },
+              },
+            },
           })
         end,
         ["lua_ls"] = function()

@@ -30,6 +30,7 @@ return {
         "ruff", -- python formatter
         "eslint_d", -- js linter
         "pgformatter", -- sql formatter
+        "gofumpt", -- go formatter
       },
       automatic_installation = true,
     })

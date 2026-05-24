@@ -22,6 +22,7 @@ return {
         python = { "ruff_format", "isort" },
         go = { "gofumpt" },
         sql = { "pg_format" },
+        rust = { "rustfmt" },
       },
       -- format_on_save = {
       --   lsp_fallback = false,
