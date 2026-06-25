@@ -117,6 +117,10 @@ return {
         "rust_analyzer",
       },
       automatic_installation = true,
+      -- stylua is a formatter (run via conform), not a language server. Recent
+      -- nvim-lspconfig ships an lsp/stylua.lua that launches `stylua --lsp`, which
+      -- mason-lspconfig v2 auto-enables and which exits with code 2. Exclude it.
+      automatic_enable = { exclude = { "stylua" } },
       handlers = {
         -- default handler for installed servers
         function(server_name)
